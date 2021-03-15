@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name='description' content='Use this tool for side-by-side SEO comparison, It compares two or more websites and allows you to get ideas to get better ranking for your page comparing your own to others, It also has a tool that allows you to check your SERP search engine result page, how it would show up on Google'>
+    <link rel="stylesheet" href="{% static 'css/compare.css' %}">
+    
+    <!--<link rel="stylesheet" href="{% static 'css/toolbar.css' %}">-->
+
+    <title>Side-By-Side SEO Comparison tool</title>
+    <link rel="icon" type="png" sizes="16x16" href='{% static "img/favicon.png" %}'>
+
+  </head>
+  <body>
+
+
+    {% block content %} {% endblock %}
+    {% include 'footer.html' %}
+
+    <script src="{% static 'frontend/main.js' %}" ></script>
+  </body>
+
+</html>

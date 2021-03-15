@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+html{
+  height: 100%;
+}
+body{
+  background: linear-gradient(#1C2C48, #172233) fixed;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color:white;
+}
+h1{
+    border-bottom: 3px solid #819ff7;
+    margin:1em 25vw;
+    padding: 1em;
+    color:#819ff7;
+    font-size: 3em;
+}
+.warningsign {
+  font-size: 70px;
+  height:550px;
+  margin:0px;
+}
+.warningtxt{
+  color:red;
+  font-size: 110%;
+  font-weight: bold;
+}
+section{
+
+  position: relative;
+}
+#inputs{
+
+}
+input[type='text']{
+  background-color: #a0a7b5;
+  width:30em;
+  height:2em;
+  border:none;
+  border-radius: 3px;
+}
+button{
+  border-radius: 4px;
+  border:none;
+  background-color: #a0a7b5  ;
+  size:0.5em;
+  font-size: 110%;
+  font-weight: bold;
+}
+#plus{
+  font-size: 130%;
+  position :absolute;
+  margin-left: 3px;
+  height:28px;
+  width:28px;
+
+}
+button.submit{
+  padding:1em;
+  margin-top:3em;
+  transition-duration: 0.4s;
+}
+button.submit:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  font-size:120%;
+}
+form{
+  color:white;
+}
+.note{
+  color:white;
+  padding:3em 5vw;
+}
+
+.footer{
+  margin:1em;
+  font-size: 120%;
+}
+.footer a{
+  padding:1em;
+}
+a:link{
+  color:white;
+  text-decoration: none;
+}
+a:visited {
+  color:white;
+  text-decoration: none;
+}
+@media (max-width: 1050px){
+  h1{
+    margin:1em 10vw;
+  }
+}
+@media only screen and (min-device-width: 700px) and (max-device-width 1050){
+  h1{
+    font-size:4em;
+  }
+  form{
+
+    margin-top:6em;
+    margin-bottom: 2em;
+  }
+  .note{
+    font-size: 150%;
+  }
+
+}
+
+@media only screen and (max-device-width: 700px){
+  h1{
+    font-size:5em;
+    margin:0 auto
+  }
+  h2{
+    font-size: 50px;
+  }
+  input[type='text']{
+    background-color: #a0a7b5;
+    width:90vw;
+    height:2em;
+    font-size: 25px;
+    border:none;
+    border-radius: 3px;
+    margin-bottom: 1em;
+  }
+  #plus{
+    font-size: 350%;
+    position :relative;
+    margin: 0 auto 1em;
+    display:block;
+    height:80px;
+    width:80px;
+    border-radius:8px;
+  }
+  button.submit{
+    padding:0em;
+    margin-top:0em;
+    padding:1em;
+    font-size: 2.5em;
+    border-radius: 10px;
+  }
+  button.submit:hover {
+    font-size:3em;
+  }
+  .note{
+    font-size: 80%
+  }
+  table{
+      max-width: auto;
+  }
+}
+table{
+  max-width: 100%;
+  border-spacing:5px;
+  margin:3em;
+  margin-left: auto;
+  margin-right: auto;
+  padding:1em;
+  color:white;
+}
+th{
+  text-align:center;
+}
+th:nth-child(1){
+  text-align: left;
+  font-weight: normal;
+  vertical-align: bottom;
+}
+
+tr:not(:first-child) td:not(:first-child) {
+  background-color: #395A6C;
+}
+tr td:nth-child(1) {
+  border:none;
+  font-weight: bold;
+  vertical-align: middle;
+  min-width: 200px;
+}
+td,tr{
+  text-align: left;
+  vertical-align: top;
+  border-radius: 10px;
+}
+.titles1,.titles2{
+  margin: 0 1em 0 1em;
+}
+input[type="checkbox"]{
+  float: left;
+  vertical-align: middle;
+}
+input[type="checkbox"].checkbox1{
+  float: left;
+  vertical-align: middle;
+  visibility: hidden;
+}
+.titles1 p{
+  display: inline;
+  padding-left: 1em;
+}
+.titles2 p{
+  display: inline;
+  padding-left: 1em;
+}
+details{
+  display: inline;
+  float: right;
+  vertical-align: middle;
+}
+p[class*='liness']{
+  padding-left: 1em;
+}
+p[class*='linesl']{
+  display:none;
+  padding-left: 1em;
+}
+p[class*='linesl'].single{
+  display:block;
+  padding-left: 1em;
+}
+p[class*='linesh']{
+  display:none;
+}
+p[id*=warn]{
+  font-size: 70%;
+  font-weight: bold;
+  text-align: center;
+  margin:0em;
+}
+.sign{
+  text-align: center;
+  display: block;
+}
+.tick{
+  color: lightgreen;
+}
+.cross{
+  color: red;
+}

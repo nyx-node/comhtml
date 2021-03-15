@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h1>Compare HTMLs</h1>
+<!-- <input type="button" onclick="location.href='../compare'" value="Back"> -->
+<div id="root">
+</div>
+<table>
+  <tr id='headdings'>
+    <th>Show html</th>
+  {% for key,url in url.items %}
+    <th>{{url}}</th>
+  {% endfor %}
+  </tr>
+  {% for key1, values1 in idc.items %}
+      {% if values1.max_length > 0 %}
+        <tr id='l-{{key1}}'>
+        {% if values1.max_length > 1 %}
+          <td id="title-{{key1}}">
+            <div class="titles2"  id="div-title-{{key1}}">
+              <input type="checkbox" class="checkbox1" id="h-{{key1}}" onclick="change('{{key1}}',false)">
+              <p>{{key1}}</p>
+              <details id='{{key1}}' onclick="change('{{key1}}',true)">
+                <summary></summary>
+              </details>
+            </div>
+          </td>
+          {% for key2,values2 in values1.items %}
+            {% if key2 != "max_length" %}
+            <td>
+
+                <p class='liness-{{key1}}'>{{ values2|length }}</p>
+
+              {% for key3,values3 in values2.items %}
+
+
+                <p class='linesl-{{key1}}'>{{values3.nohtml}}{% if key1 == "Images" and values3.width != null or values3.height != null %}<span  style="float:right;">width: {{values3.width}} height: {{values3.height}}</span>
+                                            {% elif key1 == "nofollow" or key1 == "follow" %}<span  style="float:right;">{{values3.rep}}</span>{% endif %}
+                </p>
+
+
+                <p class='linesh-{{key1}}'>{{values3.whtml}}</p>
+              {% endfor %}
+            </td>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+            <td id="title-{{key1}}">
+              <div class="titles1" id="div-title-{{key1}}">
+                <input type="checkbox" id="h-{{key1}}" onclick="change_single('{{key1}}')">
+                <p>{{key1}}</p>
+              </div>
+            </td>
+            {% for key2,values2 in values1.items %}
+              {% if key2 != "max_length" %}
+              <td>
+                {% for key3,values3 in values2.items %}
+                  <p class='linesl-{{key1}} single'>{{values3.nohtml}}</p>
+                  <p class='linesh-{{key1}}'>{{values3.whtml|safe}}</p>
+                  <p id='linesl-{{key1}} {{key2}} warn'></p>
+                {% endfor %}
+              </td>
+              {% endif %}
+            {% endfor %}
+        {% endif %}
+      {% endif %}
+
+    </tr>
+  {% endfor %}
+</table>
+
+<script type="text/javascript">
+  var idc=JSON.parse("{{jsonidc|escapejs}}");
+  for (var key in idc.title) {
+    if(key!="max_length"){
+      var size=idc.title[key][1]['nohtml'].length
+      if(size>70){
+        document.getElementById('linesl-title '+key+' warn').innerHTML="Warning: too many characters: ( "+size+" ), not everything will apear in google, limit it at 70";
+      }
+    }
+  }
+  for (var key in idc.description) {
+    var size=idc.description[key][1]['nohtml'].length
+    if(size>150){
+      document.getElementById('linesl-description '+key+' warn').innerHTML="Warning: too many characters: ( "+size+" ), not everything will apear in google, limit it at 150";
+    }
+  }
+
+    function change(id, arrow){
+      var html=document.getElementById('h-'+id).checked;
+      var detail=document.getElementById(id).hasAttribute("open");
+      if (arrow){
+        detail=!detail;
+      }
+      if(html){
+        var x=document.getElementsByClassName('linesh-'+id);
+        var y=document.getElementsByClassName('linesl-'+id);
+      }else{
+        var x=document.getElementsByClassName('linesl-'+id);
+        var y=document.getElementsByClassName('linesh-'+id);
+      }
+      var n=document.getElementsByClassName('liness-'+id);
+        if (!detail){
+          document.getElementById('h-'+id).style.visibility="hidden";
+          const a=["position","top","margin-top"]
+          for (let prop in a){
+            document.getElementById('div-title-'+id).style.removeProperty(a[prop]);
+          }
+          document.getElementById('title-'+id).style.verticalAlign="middle";
+          for(var i=0; i<x.length; i++){
+          x[i].style.display='none';
+          y[i].style.display='none';
+        }}
+        else{
+          if (id!="nofollow" && id!='follow'){
+          document.getElementById('h-'+id).style.visibility="visible";}
+          document.getElementById('div-title-'+id).style.cssText="position:sticky;top:2em;margin-top:1em";
+          document.getElementById('title-'+id).style.cssText="vertical-align:top";
+          for(var i=0; i<x.length; i++){
+          x[i].style.display='block';
+          y[i].style.display='none';
+        }}
+
+        if (!detail){
+          for(var i=0; i<n.length; i++){
+            n[i].style.display='block';}}
+        else{
+          for(var i=0; i<n.length; i++){
+            n[i].style.display='none';}}
+  }
+  function change_single(id){
+    var html=document.getElementById('h-'+id).checked;
+    if(html){
+      var x=document.getElementsByClassName('linesh-'+id);
+      var y=document.getElementsByClassName('linesl-'+id);
+    }else{
+      var x=document.getElementsByClassName('linesl-'+id);
+      var y=document.getElementsByClassName('linesh-'+id);
+    }
+    for(var i=0; i<x.length; i++){
+      x[i].style.display='block';
+      y[i].style.display='none';
+    }
+  }
+</script>
+
+{% endblock %}
